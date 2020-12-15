@@ -1,12 +1,15 @@
 .vscode/
 _deps/
-build/
 CMakeFiles/
 CMakeScripts/
+.vs/
 CMakeLists.txt.user
 CMakeCache.txt
 Testing
 Makefile
+Debug/
+Release/
+*.user
 cmake_install.cmake
 install_manifest.txt
 compile_commands.json
