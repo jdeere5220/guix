@@ -85,32 +85,22 @@ INT                  row;
 INT                  col;
 INT                  start_x;
 GX_COLOR             text_color;
-GX_UBYTE             alpha1;
-GX_UBYTE             alpha2;
-INT                  alpha_sum;
+GX_UBYTE             alpha;
 GX_UBYTE             count;
 GX_COMPRESSED_GLYPH *compressed_glyph;
+GX_UBYTE             brush_alpha = context -> gx_draw_context_brush.gx_brush_alpha;
 
-#if defined(GX_BRUSH_ALPHA_SUPPORT)
-GX_UBYTE brush_alpha = context -> gx_draw_context_brush.gx_brush_alpha;
     if (brush_alpha == 0)
     {
         return;
     }
-#endif
+
     compressed_glyph = (GX_COMPRESSED_GLYPH *)glyph;
 
     if (compressed_glyph -> gx_glyph_map_size & 0x8000)
     {
 
         text_color = context -> gx_draw_context_brush.gx_brush_line_color;
-        alpha2 = context -> gx_draw_context_brush.gx_brush_alpha;
-
-        if (alpha2 == 0)
-        {
-            return;
-        }
-
 
         /* Pickup pointer to current dispaly driver.  */
         display = context -> gx_draw_context_display;
@@ -155,25 +145,14 @@ GX_UBYTE brush_alpha = context -> gx_draw_context_brush.gx_brush_alpha;
                 {
                     /* Repeat.  */
                     count = (GX_UBYTE)((count & 0x7f) + 1);
-                    alpha1 = *glyph_data++;
+                    alpha = *glyph_data++;
+                    alpha = (GX_UBYTE)(alpha * brush_alpha / 255);
 
-                    if (alpha2 == 0xff)
+                    if (alpha > 0)
                     {
-                        alpha_sum = alpha1;
-                    }
-                    else
-                    {
-                        alpha_sum = alpha1 * alpha2 / 255;
-                    }
-
-#if defined(GX_BRUSH_ALPHA_SUPPORT)
-                    alpha_sum = (GX_UBYTE)(alpha_sum * brush_alpha / 255);
-#endif
-
-                    while (count--)
-                    {
-                        if (alpha_sum > 0)
+                        while (count--)
                         {
+
                             if ((col <= draw_area -> gx_rectangle_right) &&
                                 (col >= draw_area -> gx_rectangle_left))
                             {
@@ -181,10 +160,14 @@ GX_UBYTE brush_alpha = context -> gx_draw_context_brush.gx_brush_alpha;
                                                                          col,
                                                                          row,
                                                                          text_color,
-                                                                         (GX_UBYTE)alpha_sum);
+                                                                         (GX_UBYTE)alpha);
                             }
+                            col++;
                         }
-                        col++;
+                    }
+                    else
+                    {
+                        col += count;
                     }
                 }
                 else
@@ -192,19 +175,10 @@ GX_UBYTE brush_alpha = context -> gx_draw_context_brush.gx_brush_alpha;
                     count++;
                     while (count--)
                     {
-                        alpha1 = *glyph_data++;
-                        if (alpha2 == 0xff)
-                        {
-                            alpha_sum = alpha1;
-                        }
-                        else
-                        {
-                            alpha_sum = alpha1 * alpha2 / 255;
-                        }
-#if defined(GX_BRUSH_ALPHA_SUPPORT)
-                        alpha_sum = (GX_UBYTE)(alpha_sum * brush_alpha / 255);
-#endif
-                        if (alpha_sum > 0)
+                        alpha = *glyph_data++;
+                        alpha = (GX_UBYTE)(alpha * brush_alpha / 255);
+
+                        if (alpha > 0)
                         {
                             if (col <= draw_area -> gx_rectangle_right &&
                                 col >= draw_area -> gx_rectangle_left)
@@ -213,7 +187,7 @@ GX_UBYTE brush_alpha = context -> gx_draw_context_brush.gx_brush_alpha;
                                                                          col,
                                                                          row,
                                                                          text_color,
-                                                                         (GX_UBYTE)alpha_sum);
+                                                                         (GX_UBYTE)alpha);
                             }
                         }
                         col++;

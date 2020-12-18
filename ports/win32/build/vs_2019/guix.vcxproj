@@ -35,6 +35,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\common\src\gxe_menu_event_process.c" />
     <ClCompile Include="..\..\..\..\common\src\gxe_prompt_event_process.c" />
     <ClCompile Include="..\..\..\..\common\src\gxe_string_scroll_wheel_event_process.c" />
     <ClCompile Include="..\..\..\..\common\src\gxe_text_button_event_process.c" />
@@ -55,7 +56,9 @@
     <ClCompile Include="..\..\..\..\common\src\gx_display_driver_565rgb_rotated_canvas_blend.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_display_driver_565rgb_rotated_glyph_1bit_draw.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_display_driver_565rgb_rotated_horizontal_pixelmap_line_draw.c" />
+    <ClCompile Include="..\..\..\..\common\src\gx_display_driver_565rgb_rotated_jpeg_draw.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_display_driver_565rgb_rotated_pixel_blend.c" />
+    <ClCompile Include="..\..\..\..\common\src\gx_display_driver_565rgb_rotated_png_draw.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_display_driver_565rgb_rotated_setup.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_display_driver_generic_rotated_alphamap_draw.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_display_driver_generic_rotated_arc_fill.c" />
@@ -66,6 +69,7 @@
     <ClCompile Include="..\..\..\..\common\src\gx_display_driver_generic_rotated_pie_fill.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_display_driver_generic_rotated_polygon_fill.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_display_driver_generic_rotated_wide_line_fill.c" />
+    <ClCompile Include="..\..\..\..\common\src\gx_menu_event_process.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_prompt_event_process.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_string_scroll_wheel_event_process.c" />
     <ClCompile Include="..\..\..\..\common\src\gx_text_button_event_process.c" />

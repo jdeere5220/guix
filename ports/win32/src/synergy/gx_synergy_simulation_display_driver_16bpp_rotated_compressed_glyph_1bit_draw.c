@@ -99,6 +99,22 @@ GX_UBYTE             index;
 GX_COMPRESSED_GLYPH *compressed_glyph;
 GX_RECTANGLE         rotated_draw_area;
 GX_POINT             rotated_map_offset;
+GX_UBYTE             brush_alpha;
+VOID                 (*blend_func)(GX_DRAW_CONTEXT *, INT, INT, GX_COLOR, GX_UBYTE);
+
+    brush_alpha = context -> gx_draw_context_brush.gx_brush_alpha;
+    if (brush_alpha == 0)
+    {
+        return;
+    }
+
+    GX_SET_BLEND_FUNCTION(blend_func, context -> gx_draw_context_display -> gx_display_color_format)
+
+    if (blend_func == GX_NULL)
+    {
+        return;
+    }
+
 
     compressed_glyph = (GX_COMPRESSED_GLYPH *)glyph;
 
@@ -181,7 +197,7 @@ GX_POINT             rotated_map_offset;
                                     if ((col <= rotated_draw_area.gx_rectangle_right) &&
                                         (col >= rotated_draw_area.gx_rectangle_left))
                                     {
-                                        _gx_display_driver_16bpp_pixel_write(context, col, row, text_color);
+                                        blend_func(context, col, row, text_color, brush_alpha);
                                     }
                                 }
                                 col++;
@@ -211,7 +227,7 @@ GX_POINT             rotated_map_offset;
                                     if ((col <= rotated_draw_area.gx_rectangle_right) &&
                                         (col >= rotated_draw_area.gx_rectangle_left))
                                     {
-                                        _gx_display_driver_16bpp_pixel_write(context, col, row, text_color);
+                                        blend_func(context, col, row, text_color, brush_alpha);
                                     }
                                 }
                                 col++;

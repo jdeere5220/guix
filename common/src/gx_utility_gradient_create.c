@@ -338,9 +338,7 @@ UINT status = GX_FAILURE;
     }
 
     memset(&gradient -> gx_gradient_pixelmap, 0, sizeof(GX_PIXELMAP));
-    gradient -> gx_gradient_pixelmap.gx_pixelmap_width = width;/*  11-15-2018     Kenneth Maxwell          Modified comment(s),          */
-/*                                            resulting in version 5.5    */
-
+    gradient -> gx_gradient_pixelmap.gx_pixelmap_width = width;
     gradient -> gx_gradient_pixelmap.gx_pixelmap_height = height;
     gradient -> gx_gradient_type = type;
     gradient -> gx_gradient_alpha_start = alpha_start;

@@ -175,21 +175,24 @@ GX_UBYTE brush_alpha = context -> gx_draw_context_brush.gx_brush_alpha;
                 {
                     /* Repeat.  */
                     count = (GX_UBYTE)((count & 0x7f) + 1);
+
                     alpha1 = (GX_UBYTE)((*glyph_data) << 4);
                     alpha2 = (*glyph_data) & 0xf0;
 
+                    Extend_alpha_4bit(alpha1)
+                    Extend_alpha_4bit(alpha2)
+#if defined(GX_BRUSH_ALPHA_SUPPORT)
+                    alpha1 = (GX_UBYTE)(alpha1 * brush_alpha / 255);
+                    alpha2 = (GX_UBYTE)(alpha2 * brush_alpha / 255);
+#endif
+
                     while (count--)
                     {
-
                         if (alpha1 > 0)
                         {
                             if ((col <= rotated_draw_area.gx_rectangle_right) &&
                                 (col >= rotated_draw_area.gx_rectangle_left))
                             {
-                                Extend_alpha_4bit(alpha1)
-#if defined(GX_BRUSH_ALPHA_SUPPORT)
-                                alpha1 = (GX_UBYTE)(alpha1 * brush_alpha / 255);
-#endif
                                 blend_func(context,
                                            col,
                                            row,
@@ -204,10 +207,6 @@ GX_UBYTE brush_alpha = context -> gx_draw_context_brush.gx_brush_alpha;
                             if ((col <= rotated_draw_area.gx_rectangle_right) &&
                                 (col >= rotated_draw_area.gx_rectangle_left))
                             {
-                                Extend_alpha_4bit(alpha2)
-#if defined(GX_BRUSH_ALPHA_SUPPORT)
-                                alpha2 = (GX_UBYTE)(alpha2 * brush_alpha / 255);
-#endif
                                 blend_func(context,
                                            col,
                                            row,

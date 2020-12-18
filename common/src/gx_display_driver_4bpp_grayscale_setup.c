@@ -106,6 +106,7 @@ VOID _gx_display_driver_4bpp_grayscale_setup(GX_DISPLAY *display, VOID *aux_data
     display -> gx_display_mouse_define                         = _gx_display_driver_generic_mouse_define;
 #endif
 
+    display -> gx_display_rotation_angle                       = 0;
     display -> gx_display_driver_data                          = (VOID *)aux_data;
     display -> gx_display_accelerator                          = GX_NULL;
     display -> gx_display_layer_services                       = GX_NULL;

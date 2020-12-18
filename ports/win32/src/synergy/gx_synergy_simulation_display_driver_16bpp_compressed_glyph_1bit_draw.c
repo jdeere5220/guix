@@ -97,6 +97,23 @@ GX_UBYTE             count;
 GX_UBYTE             index;
 GX_COMPRESSED_GLYPH *compressed_glyph;
 
+GX_UBYTE             brush_alpha;
+VOID                 (*blend_func)(GX_DRAW_CONTEXT *, INT, INT, GX_COLOR, GX_UBYTE);
+
+    brush_alpha = context -> gx_draw_context_brush.gx_brush_alpha;
+    if (brush_alpha == 0)
+    {
+        return;
+    }
+
+    GX_SET_BLEND_FUNCTION(blend_func, context -> gx_draw_context_display -> gx_display_color_format)
+
+    if (blend_func == GX_NULL)
+    {
+        return;
+    }
+
+
     compressed_glyph = (GX_COMPRESSED_GLYPH *)glyph;
 
     if (compressed_glyph -> gx_glyph_map_size & 0x8000)
@@ -156,7 +173,7 @@ GX_COMPRESSED_GLYPH *compressed_glyph;
                                     if ((col <= draw_area -> gx_rectangle_right) &&
                                         (col >= draw_area -> gx_rectangle_left))
                                     {
-                                        _gx_display_driver_16bpp_pixel_write(context, col, row, text_color);
+                                        blend_func(context, col, row, text_color, brush_alpha);
                                     }
                                 }
                                 col++;
@@ -186,7 +203,7 @@ GX_COMPRESSED_GLYPH *compressed_glyph;
                                     if ((col <= draw_area -> gx_rectangle_right) &&
                                         (col >= draw_area -> gx_rectangle_left))
                                     {
-                                        _gx_display_driver_16bpp_pixel_write(context, col, row, text_color);
+                                        blend_func(context, col, row, text_color, brush_alpha);
                                     }
                                 }
                                 col++;
