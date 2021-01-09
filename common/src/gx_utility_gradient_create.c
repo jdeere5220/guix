@@ -279,7 +279,7 @@ GX_UBYTE *data = (GX_UBYTE *)gradient -> gx_gradient_pixelmap.gx_pixelmap_data;
 /*  FUNCTION                                               RELEASE        */
 /*                                                                        */
 /*    _gx_utility_gradient_create                         PORTABLE C      */
-/*                                                           6.1          */
+/*                                                           6.x          */
 /*  AUTHOR                                                                */
 /*                                                                        */
 /*    Kenneth Maxwell, Microsoft Corporation                              */
@@ -317,6 +317,9 @@ GX_UBYTE *data = (GX_UBYTE *)gradient -> gx_gradient_pixelmap.gx_pixelmap_data;
 /*  05-19-2020     Kenneth Maxwell          Initial Version 6.0           */
 /*  09-30-2020     Kenneth Maxwell          Modified comment(s),          */
 /*                                            resulting in version 6.1    */
+/*  xx-xx-xxxx     Kenneth Maxwell          Modified comment(s), removed  */
+/*                                            errant comment,             */
+/*                                            resulting in version 6.x    */
 /*                                                                        */
 /**************************************************************************/
 UINT _gx_utility_gradient_create(GX_GRADIENT *gradient, GX_VALUE width, GX_VALUE height,

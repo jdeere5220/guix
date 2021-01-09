@@ -26,7 +26,7 @@
 /*  COMPONENT DEFINITION                                   RELEASE        */
 /*                                                                        */
 /*    gx_utility.h                                        PORTABLE C      */
-/*                                                           6.1          */
+/*                                                           6.x          */
 /*  AUTHOR                                                                */
 /*                                                                        */
 /*    Kenneth Maxwell, Microsoft Corporation                              */
@@ -45,6 +45,9 @@
 /*  09-30-2020     Kenneth Maxwell          Modified comment(s),          */
 /*                                            added new prototype,        */
 /*                                            resulting in version 6.1    */
+/*  xx-xx-xxxx     Kenneth Maxwell          Modified comment(s), added    */
+/*                                            bidi test reordering APIs,  */
+/*                                            resulting in version 6.x    */
 /*                                                                        */
 /**************************************************************************/
 

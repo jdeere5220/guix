@@ -1,0 +1,8 @@
+gx_api.h:/*  xx-xx-xxxx     Kenneth Maxwell          Modified comment(s),          */
+gx_binres_loader.h:/*  xx-xx-xxxx     Kenneth Maxwell          Modified comment(s),          */
+gx_button.h:/*  xx-xx-xxxx     Kenneth Maxwell          Modified comment(s),          */
+gx_prompt.h:/*  xx-xx-xxxx     Kenneth Maxwell          Modified comment(s),          */
+gx_rich_text_view.h:/*  xx-xx-xxxx     Kenneth Maxwell          Initial Version 6.x           */
+gx_scroll_wheel.h:/*  xx-xx-xxxx     Kenneth Maxwell          Modified comment(s),          */
+gx_system.h:/*  xx-xx-xxxx     Kenneth Maxwell          Modified comment(s),          */
+gx_utility.h:/*  xx-xx-xxxx     Kenneth Maxwell          Modified comment(s),          */

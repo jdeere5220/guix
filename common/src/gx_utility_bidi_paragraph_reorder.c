@@ -3082,6 +3082,8 @@ GX_BIDI_CONTEXT context;
 /*                                                                        */
 /*  09-30-2020     Kenneth Maxwell          Initial Version 6.1           */
 /*  xx-xx-xxxx     Kenneth Maxwell          Modified comment(s),          */
+/*                                            made this function a public */
+/*                                            api,                        */
 /*                                            resulting in version 6.x    */
 /*                                                                        */
 /**************************************************************************/
